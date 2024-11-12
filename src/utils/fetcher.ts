@@ -210,14 +210,6 @@ export const getQouteTableColums = (): TableColumnsType<any> => {
 
     return [
         {
-          title: 'Created',
-          dataIndex: 'created',
-          key: 'created',
-          sorter: (a: { created: string  }, b: { created: string  }) => {return 0}, // sorting comes from api
-          fixed: "left",
-          width: 100,
-        },
-        {
           title: 'CustomerInfo',
           dataIndex: 'customerInfo',
           key: 'customer_info',
@@ -232,12 +224,18 @@ export const getQouteTableColums = (): TableColumnsType<any> => {
           width: 200,
         },
         {
+          title: 'Created',
+          dataIndex: 'created',
+          key: 'created',
+          sorter: (a: { created: string  }, b: { created: string  }) => {return 0}, // sorting comes from api
+          width: 100,
+        },
+        {
           title: 'Status',
           dataIndex: 'status',
           key: 'status',
           sorter: (a: { status: string  }, b: { status: string  }) => {return 0}, // sorting comes from api,
           filters: QuoteStatusFilterData.map((quoteType, index)=>{ return { text:quoteType,value:quoteType}}),
-          fixed:'right',
           width:100
         },
         {
