@@ -2,7 +2,7 @@
 
 ## Assumption:
 
-Expect backend to run on http://127.0.0.1:8090/
+Expect backend to run on http://127.0.0.1:8090/ (or change const ApiUrl in src/utils/fetcher.ts )
 
 Expect to run Node version 20
 
