@@ -2,6 +2,8 @@ import { TableColumnsType } from "antd";
 import { Quote, QuotesResponse, QuoteStatusFilterData } from "../interfaces/quote";
 import { ProductsResponse } from "../interfaces/product";
 
+const ApiUrl = 'http://127.0.0.1:8090'
+
 export interface PaginationParams {
     page: number
     perPage: number
@@ -47,7 +49,7 @@ export const fetchQuotes = async (pagination:PaginationParams): Promise<QuotesRe
     }
 
     try{
-        const response = await fetch('http://127.0.0.1:8090/api/collections/quotes/records/?page='+requestPage+'&perPage='+requestPerPage+sorting+filtering, {
+        const response = await fetch(ApiUrl + '/api/collections/quotes/records/?page='+requestPage+'&perPage='+requestPerPage+sorting+filtering, {
             headers,
         });
         if(response.status === 200){
@@ -71,7 +73,7 @@ export const fetchQuotes = async (pagination:PaginationParams): Promise<QuotesRe
     };
 
     try{
-        const response = await fetch('http://127.0.0.1:8090/api/collections/quotes/records/'+quoteId, {
+        const response = await fetch(ApiUrl + '/api/collections/quotes/records/'+quoteId, {
             headers,
         });
         if(response.status === 200){
@@ -90,7 +92,7 @@ export const fetchQuotes = async (pagination:PaginationParams): Promise<QuotesRe
 
   export const fetch100Products = async (): Promise<ProductsResponse> => {
 
-    let url = 'http://127.0.0.1:8090/api/collections/products/records?perPage=100'
+    let url = ApiUrl + '/api/collections/products/records?perPage=100'
     const cache = await caches.open('products')
     const cachedProducts = await cache.match(url)
     const cacheTimestamp = cachedProducts ? cachedProducts.headers.get('X-Cache-Timestamp') : null
@@ -122,7 +124,7 @@ export const fetchQuotes = async (pagination:PaginationParams): Promise<QuotesRe
             if (response.ok) {
               const clonedResponse = response.clone()
               const newHeaders = new Headers(clonedResponse.headers);
-              newHeaders.set('X-Cache-Timestamp', Date.now().toString());
+              newHeaders.set('X-Cache-Timestamp', Date.now().toString())
 
               const cacheResponse = new Response(clonedResponse.body, {
                 status: clonedResponse.status,
@@ -153,7 +155,7 @@ export const fetchQuotes = async (pagination:PaginationParams): Promise<QuotesRe
     };
 
     try{
-        const response = await fetch('http://127.0.0.1:8090/api/collections/quotes/records/'+quote.id, {
+        const response = await fetch(ApiUrl + '/api/collections/quotes/records/'+quote.id, {
             method: 'PATCH',
             body: JSON.stringify(quote)
           ,headers
@@ -178,10 +180,10 @@ export const fetchQuotes = async (pagination:PaginationParams): Promise<QuotesRe
 
     const headers = {
       'Content-Type': 'application/json',
-    };
+    }
 
     try{
-        const response = await fetch('http://127.0.0.1:8090/api/collections/quotes/records/', {
+        const response = await fetch( ApiUrl + '/api/collections/quotes/records/', {
             method: 'POST',
             body: JSON.stringify(quote)
           ,headers
@@ -193,11 +195,11 @@ export const fetchQuotes = async (pagination:PaginationParams): Promise<QuotesRe
         }
         else{
             let productsResponse = await response.json()
-            throw new Error(response.status + ' ' + productsResponse.message);
+            throw new Error(response.status + ' ' + productsResponse.message)
         }
     }
     catch(error:any){
-        throw new Error(error);
+        throw new Error(error)
     } 
 
   }

@@ -20,3 +20,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 ### `npm run storybook`
   
 Open [http://localhost:6006/](http://localhost:6006/) to view it in the browser.
+
+#### Excuses
+
+Topic of monitoring not included: i recommand Sentry.
