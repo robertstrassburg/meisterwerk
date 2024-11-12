@@ -18,6 +18,8 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 #### Running Storybook 
 
 ### `npm run storybook`
+
+Attention: So far the backend requests are not mocked. Means that the backend needs to be running!
   
 Open [http://localhost:6006/](http://localhost:6006/) to view it in the browser.
 
